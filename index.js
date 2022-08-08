@@ -32,16 +32,46 @@ var checkComplexity_open = false;
 
 const days = ["duminica", "luni", "marti", "miercuri my dudes", "joi", "vineri", "sambata"];
 client.on("messageCreate", (message) => {
+
+
+
     let date = new Date();
     if (message.content == "hi")
         message.reply("hi!");
     else if (message.content == "Ce zi este azi?" || message.content == "Ce zi e azi?")
         message.reply("Este " + days[date.getDay()]);
-    else if (message.content == "checkComplexity")
+    else if (message.content == "checkComplexity") {
         checkComplexity_open = true;
-    else if (heckComplexity_open) {
-
+        //message.reply("Enter the function :");
+    } else if (checkComplexity_open == true) {
+        const args = message.content.split("\n");
+        for (let i = 0; i < args.length; i++) {
+            message.channel.send(args[i]);
+        }
     }
 });
+
+function complexity_cheker(mesaj) {
+    const variabile = new Map();
+    const args = mesaj.split("\n");
+
+
+    for (let j = 0; j < args.length; j++) {
+        let cuvinte = args[j].split(" ");
+        for (let i = 0; i < cuvinte; i++) {
+            switch (cuvinte[i]) {
+                case "int":
+
+                    break;
+                case "float":
+
+                    break;
+                case "char":
+
+                    break;
+            }
+        }
+    }
+}
 
 client.login(TOKEN);

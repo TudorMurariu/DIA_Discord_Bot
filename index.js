@@ -26,11 +26,17 @@ const client = new Discord.Client({
 
 client.on('ready', () => {
     console.log("YAY");
+    client.user.setActivity('mama ta', { type: 'WATCHING' });
+    try {
+        client.user.setAvatar('./emil.png');
+        client.user.setUsername('DIA Discord Bot');
+    } catch (e) {
+        // we do nottin abt it
+    }
 });
 
-var checkComplexity_open = false;
-
 const days = ["duminica", "luni", "marti", "miercuri my dudes", "joi", "vineri", "sambata"];
+
 client.on("messageCreate", (message) => {
 
 
@@ -40,38 +46,22 @@ client.on("messageCreate", (message) => {
         message.reply("hi!");
     else if (message.content == "Ce zi este azi?" || message.content == "Ce zi e azi?")
         message.reply("Este " + days[date.getDay()]);
-    else if (message.content == "checkComplexity") {
-        checkComplexity_open = true;
-        //message.reply("Enter the function :");
-    } else if (checkComplexity_open == true) {
-        const args = message.content.split("\n");
-        for (let i = 0; i < args.length; i++) {
-            message.channel.send(args[i]);
+    else if (message.content.startsWith("-n ")) {
+        const args = message.content.split(" ");
+        console.log(args[1]);
+        switch (args[1]) {
+            case "meow":
+                break;
+            case "become_me":
+                //client.user.setUsername(message.author.username);
+                message.guild.
+                console.log(message.author.username);
+                client.user.setAvatar(message.author.avatarURL());
+                break;
         }
     }
 });
 
-function complexity_cheker(mesaj) {
-    const variabile = new Map();
-    const args = mesaj.split("\n");
 
-
-    for (let j = 0; j < args.length; j++) {
-        let cuvinte = args[j].split(" ");
-        for (let i = 0; i < cuvinte; i++) {
-            switch (cuvinte[i]) {
-                case "int":
-
-                    break;
-                case "float":
-
-                    break;
-                case "char":
-
-                    break;
-            }
-        }
-    }
-}
 
 client.login(TOKEN);
